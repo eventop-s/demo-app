@@ -1,0 +1,8 @@
+{
+  "name": "streamflix-demo",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "git@github.com:eventop-s/demo-app.git",
+  "author": "eventop",
+  "license": "MIT"
+}
