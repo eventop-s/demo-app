@@ -2,7 +2,7 @@
 
 import { useState } from 'react';
 import { Check, Loader2 } from 'lucide-react';
-import { PLANS } from '../../lib/eventop';
+import { PLANS } from '../../lib/plans';
 
 export default function PricingPage() {
   const [email, setEmail] = useState('');
