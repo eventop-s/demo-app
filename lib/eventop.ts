@@ -1,18 +1,20 @@
+import dotenv from 'dotenv';
 import { Eventop } from '@eventop/sdk';
 
-if (!process.env.EVENTOP_API_KEY) {
+const evenApikey = process.env.EVENTOP_API_KEY;
+if (!evenApikey) {
   throw new Error('EVENTOP_API_KEY is not set');
 }
 
 export const eventop = new Eventop({
-  apiKey: process.env.EVENTOP_API_KE!,
+  apiKey: evenApikey,
 });
 
 export const PLANS = {
   basic: {
-    id: 'basic-monthly',
+    id: 'miuqwtoz-gyc75d2y',
     name: 'Basic',
-    price: 9.99,
+    price: 0.40,
     interval: 'month',
     features: [
       'HD streaming',
@@ -22,9 +24,9 @@ export const PLANS = {
     ]
   },
   standard: {
-    id: 'standard-monthly',
+    id: 'miu41lsc-78ssn2d4',
     name: 'Standard',
-    price: 15.99,
+    price: 5,
     interval: 'month',
     features: [
       'Full HD streaming',
@@ -34,17 +36,17 @@ export const PLANS = {
       'Cancel anytime'
     ]
   },
-  premium: {
-    id: 'premium-monthly',
-    name: 'Premium',
-    price: 19.99,
-    interval: 'month',
-    features: [
-      '4K + HDR streaming',
-      '4 devices at a time',
-      'Unlimited movies & TV shows',
-      'Download on 4 devices',
-      'Cancel anytime'
-    ]
-  }
+  // premium: {
+  //   id: 'premium-monthly',
+  //   name: 'Premium',
+  //   price: 19.99,
+  //   interval: 'month',
+  //   features: [
+  //     '4K + HDR streaming',
+  //     '4 devices at a time',
+  //     'Unlimited movies & TV shows',
+  //     'Download on 4 devices',
+  //     'Cancel anytime'
+  //   ]
+  // }
 };
