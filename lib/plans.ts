@@ -1,8 +1,8 @@
 export const PLANS = {
   basic: {
-    id: 'miuqwtoz-gyc75d2y',
+    id: 'mj0l34ps-5jxdjsoj',
     name: 'Basic',
-    price: 0.40,
+    price: 0.20,
     interval: 'month',
     features: [
       'HD streaming',
