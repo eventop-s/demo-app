@@ -1,9 +1,13 @@
 import './globals.css';
 import type { Metadata } from 'next';
-import { Inter } from 'next/font/google';
-import Link from 'link';
+import localFont from "next/font/local";
+import Link from 'next/link';
 
-const inter = Inter({ subsets: ['latin'] });
+const inter = localFont({
+  src: "../public/fonts/InterVariable.ttf",
+  variable: "--font-inter",
+  display: "swap",
+});
 
 export const metadata: Metadata = {
   title: 'StreamFlix - Crypto Subscriptions Demo',
