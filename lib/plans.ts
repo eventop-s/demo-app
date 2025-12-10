@@ -1,6 +1,6 @@
 export const PLANS = {
   basic: {
-    id: 'mj0l34ps-5jxdjsoj',
+    id: 'mj0nr037-0z0z9ir4',
     name: 'Basic',
     price: 0.20,
     interval: 'month',
@@ -12,7 +12,7 @@ export const PLANS = {
     ]
   },
   standard: {
-    id: 'miu41lsc-78ssn2d4',
+    id: 'mj0ns55t-ms0auwto',
     name: 'Premium Plus',
     price: 5.00,
     interval: 'month',
