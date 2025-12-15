@@ -25,10 +25,10 @@ export const PLANS = {
     ]
   },
   premium: {
-    id: '345d',
+    id: 'mj76rqog-boo4ojyg',
     name: 'Premium',
-    price: 1,
-    interval: 'weekly',
+    price: 0.29,
+    interval: 'monthly',
     features: [
       '4K + HDR streaming',
       '4 devices at a time',
