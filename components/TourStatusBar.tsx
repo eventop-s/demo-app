@@ -1,9 +1,11 @@
 'use client';
 
-import { useEventopTour } from '@eventop/sdk/react';
+import { useEventopControls } from '@eventop/sdk/react';
 
 export function TourStatusBar() {
-  const { isActive, isPaused, resume, cancel } = useEventopTour();
+  const { state, resume, cancel } = useEventopControls();
+  const isPaused = state === 'paused';
+  const isActive = !['idle', 'completed', 'cancelled', 'failed'].includes(state);
 
   if (!isActive && !isPaused) return null;
 

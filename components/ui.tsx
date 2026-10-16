@@ -5,6 +5,7 @@ import { ReactNode } from 'react';
 // ── Button ──
 interface ButtonProps {
   id?: string;
+  type?: 'button' | 'submit';
   variant?: 'primary' | 'ghost';
   onClick?: () => void;
   disabled?: boolean;
@@ -13,14 +14,16 @@ interface ButtonProps {
 
 export function Button({ 
   id, 
+  type = 'button',
   variant = 'primary', 
   onClick, 
   disabled, 
-  children 
+  children,
 }: ButtonProps) {
   return (
     <button
       id={id}
+      type={type}
       className={`btn ${variant === 'ghost' ? 'btn-ghost' : 'btn-primary'}`}
       onClick={onClick}
       disabled={disabled}
@@ -44,7 +47,7 @@ export function IconButton({
   icon, 
   label, 
   active, 
-  onClick 
+  onClick,
 }: IconButtonProps) {
   return (
     <button
@@ -64,9 +67,10 @@ interface ToggleProps {
   id?: string;
   on: boolean;
   onToggle: () => void;
+  label?: string;
 }
 
-export function Toggle({ id, on, onToggle }: ToggleProps) {
+export function Toggle({ id, on, onToggle, label }: ToggleProps) {
   return (
     <button
       id={id}
@@ -74,6 +78,7 @@ export function Toggle({ id, on, onToggle }: ToggleProps) {
       onClick={onToggle}
       aria-pressed={on}
       role="switch"
+      aria-label={label}
     />
   );
 }
@@ -94,12 +99,16 @@ export function Card({
   subtitle, 
   isNew, 
   selected, 
-  onClick 
+  onClick,
 }: CardProps) {
   return (
     <div
       className={`card ${isNew ? 'card-new' : ''} ${selected ? 'card-selected' : ''}`}
       onClick={onClick}
+      onKeyDown={event => { if (onClick && (event.key === 'Enter' || event.key === ' ')) { event.preventDefault(); onClick(); } }}
+      role={onClick ? 'button' : undefined}
+      tabIndex={onClick ? 0 : undefined}
+      aria-label={onClick ? title : undefined}
     >
       <div className="card-thumb">{thumb}</div>
       <div className="card-info">

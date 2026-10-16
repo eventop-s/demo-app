@@ -1,7 +1,6 @@
 'use client';
 
 import { useState }         from 'react';
-import { EventopTarget }    from '@eventop/sdk/react';
 import { CanvasToolbar }    from '../../components/canvas/canvas-toolbar';
 import { CanvasStage }      from '../../components/canvas/canvas-stage';
 import { EffectsPanel }     from '../../components/canvas/effects-panel';
@@ -37,13 +36,8 @@ export default function CanvasPage() {
   };
 
   return (
-    <EventopTarget
-      id="drop-shadow"
-      name="Drop Shadow Effect"
-      description="Apply a customisable drop shadow to a selected canvas element"
-      route="/canvas"
-    >
       <div className="canvas-screen">
+        <h1 className="sr-only">Canvas</h1>
         <CanvasToolbar
           effectsOpen={effectsOpen}
           onEffectsClick={handleEffectsClick}
@@ -74,6 +68,5 @@ export default function CanvasPage() {
           </div>
         </div>
       </div>
-    </EventopTarget>
   );
 }

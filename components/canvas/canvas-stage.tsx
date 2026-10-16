@@ -1,6 +1,5 @@
 'use client';
 
-import { EventopStep } from '@eventop/sdk/react';
 
 interface CanvasStageProps {
   selectedEl: string | null;
@@ -44,11 +43,6 @@ export function CanvasStage({ selectedEl, onSelect }: CanvasStageProps) {
   };
 
   return (
-    <EventopStep
-      feature="drop-shadow"
-      index={0}
-      advanceOn={{ selector: '.canvas-el', event: 'click', delay: 300 }}
-    >
       <div
         id="canvas-stage"
         className="canvas-stage"
@@ -59,6 +53,10 @@ export function CanvasStage({ selectedEl, onSelect }: CanvasStageProps) {
             key={el.id}
             id={el.id}
             className={`canvas-el ${selectedEl === el.id ? 'selected' : ''}`}
+            role="button"
+            tabIndex={0}
+            aria-label={el.id === 'el-rect' ? 'Rectangle on canvas' : 'Circle on canvas'}
+            aria-pressed={selectedEl === el.id}
             style={{
               position: 'absolute',
               cursor: 'pointer',
@@ -68,9 +66,9 @@ export function CanvasStage({ selectedEl, onSelect }: CanvasStageProps) {
               ...el.style,
             }}
             onClick={() => handleElementClick(el.id)}
+            onKeyDown={event => { if (event.key === 'Enter' || event.key === ' ') { event.preventDefault(); handleElementClick(el.id); } }}
           />
         ))}
       </div>
-    </EventopStep>
   );
 }

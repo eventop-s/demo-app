@@ -1,8 +1,6 @@
 'use client';
 
 import { useState } from 'react';
-import { EventopTarget } from '@eventop/sdk/react';
-import { useEventopAI } from '@eventop/sdk/react';
 import { Button, Avatar } from '../ui';
 
 const members = [
@@ -12,9 +10,9 @@ const members = [
 ] as const;
 
 export function TeamSection() {
-  const { stepComplete, stepFail } = useEventopAI();
   const [email,    setEmail]    = useState('');
   const [inviting, setInviting] = useState(false);
+  const [sent, setSent] = useState(false);
 
   const validateEmail = (email: string): boolean => {
     return email.includes('@') && email.includes('.');
@@ -22,15 +20,15 @@ export function TeamSection() {
 
   const handleInvite = async () => {
     if (!validateEmail(email)) {
-      stepFail('Please enter a valid email address.');
       return;
     }
 
     setInviting(true);
+    setSent(false);
     await new Promise(resolve => setTimeout(resolve, 900));
     setInviting(false);
     setEmail('');
-    stepComplete();
+    setSent(true);
   };
 
   return (
@@ -47,15 +45,11 @@ export function TeamSection() {
           </div>
         ))}
 
-        <EventopTarget
-          id="invite-member"
-          name="Invite Teammate"
-          description="Add a new member to the workspace by email"
-          route="/dashboard"
-        >
-          <div className="invite-card" id="invite-form">
+          <form className="invite-card" id="invite-form" aria-label="Invite teammate form" onSubmit={event => { event.preventDefault(); void handleInvite(); }}>
             <input
               type="email"
+              required
+              aria-label="Teammate email"
               value={email}
               onChange={e => setEmail(e.target.value)}
               placeholder="colleague@company.com"
@@ -63,14 +57,14 @@ export function TeamSection() {
               disabled={inviting}
             />
             <Button
-              onClick={handleInvite}
-              disabled={inviting || !email}
+              type="submit"
+              disabled={inviting || !validateEmail(email)}
               id="btn-send-invite"
             >
               {inviting ? 'Sending…' : 'Invite'}
             </Button>
-          </div>
-        </EventopTarget>
+          </form>
+          {sent && <p role="status" className="form-status">Invitation queued in this demo.</p>}
       </div>
     </>
   );

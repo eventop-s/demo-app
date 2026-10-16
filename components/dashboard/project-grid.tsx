@@ -1,7 +1,6 @@
 'use client';
 
 import { useRouter } from 'next/navigation';
-import { EventopTarget } from '@eventop/sdk/react';
 import { Card } from '../ui';
 
 const projects = [
@@ -23,23 +22,16 @@ export function ProjectGrid() {
             thumb={p.thumb}
             title={p.name}
             subtitle={p.sub}
-            onClick={() => router.push('/canvas')}
+            onClick={() => router.push('/projects/new')}
           />
         ))}
 
-        <EventopTarget
-          id="new-project"
-          name="Create New Project"
-          description="Start a new blank design project"
-          route="/dashboard"
-        >
           <Card
             isNew
             thumb="＋"
             title="New project"
-            onClick={() => router.push('/canvas')}
+            onClick={() => router.push('/projects/new')}
           />
-        </EventopTarget>
       </div>
     </>
   );

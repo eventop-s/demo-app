@@ -1,6 +1,5 @@
 'use client';
 
-import { EventopTarget, EventopStep } from '@eventop/sdk/react';
 import { Toggle } from '../ui';
 import { ShadowControls } from './shadow-controls';
 
@@ -25,28 +24,9 @@ export function EffectsPanel({
     <div id="effects-panel" className="effects-panel open">
       <div className="panel-label">Effects</div>
 
-      {/* Drop shadow toggle: step 2 + standalone feature */}
       <div className="effect-row">
         <span className="effect-name">Drop Shadow</span>
-        <EventopTarget
-          id="shadow-toggle-feature"
-          name="Shadow Toggle"
-          description="Turn drop shadow on or off"
-          route="/canvas"
-        >
-          <EventopStep
-            feature="drop-shadow"
-            index={2}
-            waitFor="#effects-panel.open"
-            advanceOn={{ event: 'click', delay: 300 }}
-          >
-            <Toggle
-              id="shadow-toggle"
-              on={shadowOn}
-              onToggle={onShadowToggle}
-            />
-          </EventopStep>
-        </EventopTarget>
+        <Toggle id="shadow-toggle" label="Drop Shadow" on={shadowOn} onToggle={onShadowToggle} />
       </div>
 
       {/* Shadow controls: step 3 with nested sub-steps */}
@@ -55,18 +35,7 @@ export function EffectsPanel({
       {/* Background blur */}
       <div className="effect-row" style={{ marginTop: 12 }}>
         <span className="effect-name">Background Blur</span>
-        <EventopTarget
-          id="blur-toggle-feature"
-          name="Background Blur"
-          description="Apply a blur to the background behind the element"
-          route="/canvas"
-        >
-          <Toggle
-            id="blur-toggle"
-            on={blurOn}
-            onToggle={onBlurToggle}
-          />
-        </EventopTarget>
+        <Toggle id="blur-toggle" label="Background Blur" on={blurOn} onToggle={onBlurToggle} />
       </div>
     </div>
   );
